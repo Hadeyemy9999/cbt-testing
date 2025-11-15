@@ -4359,7 +4359,7 @@ const fullQuestionsData = [
     'options': { 'A': 'Director', 'B': 'Chief Commander', 'C': 'Comptroller', 'D': 'General' },
     'ans': 'C',
     'exp': 'The officer is addressed by their rank, Comptroller.'
-  }
+  };
    
     // CIVIL DEFENCE (NSCDC) - 15 Questions Pool
   {
