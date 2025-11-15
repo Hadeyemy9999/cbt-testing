@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,4 +121,43 @@
             
             <div class="flex justify-center">
                 <div class="w-full max-w-sm bg-green-50 p-6 rounded-xl border-4 border-green-400 shadow-xl">
-                    <p class="text-xl font-semibold text-gray-700">Final 
+                    <p class="text-xl font-semibold text-gray-700">Final Score</p>
+                    <p class="text-6xl font-black text-green-600" id="final-score">0/50</p>
+                    <p class="text-sm text-gray-500">Time Spent: <span id="time-spent"></span></p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-blue-700 pt-4 border-t mt-6">Detailed Review & Explanation</h3>
+            <div id="review-list" class="space-y-8 text-left">
+            </div>
+
+            <button id="restart-button" class="py-3 px-8 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg transition duration-150 mt-6">
+                Take Another Exam
+            </button>
+        </div>
+
+        <div id="confirmation-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md space-y-5 text-center">
+                <h4 class="text-2xl font-bold text-red-600">Confirm Submission</h4>
+                <p id="modal-text" class="text-gray-700">Are you sure you want to end the exam? You will not be able to change your answers.</p>
+                <div class="flex justify-center space-x-4">
+                    <button id="modal-confirm" class="py-2 px-6 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition duration-150">
+                        Yes, Submit
+                    </button>
+                    <button id="modal-cancel" class="py-2 px-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-lg transition duration-150">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="w-full text-center mt-6 text-sm text-gray-600">
+    <h3> Refined and Updated by Habeeb Oladapo Babatunde ---- Contact: <a href="mailto:@codewriter0206@gmail.com" class="text-green-600 hover:underline"> @codewriter0206@gmail.com </a> | Follow: <a href="https://x.com/HabeebOlad11620" target="_blank" rel="noreferrer" class="text-green-600 hover:underline">Follow me on X</a> </h3>
+    <p>This is a Refined copy of Prof. WiseMan Project---Contact: <a href="mailto:nicholasomozusi@gmail.com" class="text-green-600 hover:underline">nicholasomozusi@gmail.com</a> | Follow: <a href="https://x.com/@profwiseman1" target="_blank" rel="noreferrer" class="text-green-600 hover:underline">x.com/@profwiseman1</a></p>
+</footer>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
