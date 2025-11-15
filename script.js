@@ -4761,7 +4761,7 @@ const fullQuestionsData = [
     'options': { 'A': 'Foreign Military Forces', 'B': 'Other law enforcement and security agencies', 'C': 'International NGOs only', 'D': 'Local restaurants' },
     'ans': 'B',
     'exp': 'Effective maintenance of peace requires inter-agency collaboration.'
-  }
+  },
 
     // CORRECTIONAL CENTER (NCS) - 15 Questions Pool
   {
@@ -5163,7 +5163,7 @@ const fullQuestionsData = [
     'options': { 'A': 'Federal Road Safety Corps', 'B': 'Federal Ministry of Health and specialized mental health institutions', 'C': 'Foreign Embassies', 'D': 'Customs Service' },
     'ans': 'B',
     'exp': 'The provision of mental health care is a crucial aspect of inmate welfare and rehabilitation, requiring collaboration with health authorities.'
-  }
+  },
                 
     // FEDERAL FIRE SERVICE (FFS) - 15 Questions Pool
   {
@@ -5565,7 +5565,7 @@ const fullQuestionsData = [
     'options': { 'A': 'Water/Foam', 'B': 'Dry Chemical Powder (DCP)', 'C': 'Carbon Dioxide (CO₂) or Clean Agent', 'D': 'Sand' },
     'ans': 'C',
     'exp': 'CO₂ or Clean Agent extinguishers are preferred for electrical and server areas as they leave no residue and do not damage equipment.'
-  }
+  },
   
 // --- ADDED FROM CDCFIB PRACTICE QUESTIONS (Batch 1) ---
 
