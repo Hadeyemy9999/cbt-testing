@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBT Exam Simulator (Fixed Files)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="stylesheet" href="style.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        .option-selected { background-color: #dbeafe; border-color: #3b82f6; font-weight: bold; }
+        .option-correct { background-color: #dcfce7; border-color: #10b981; font-weight: bold; color: #065f46; }
+        .option-incorrect { background-color: #fee2e2; border-color: #ef4444; font-weight: bold; color: #b91c1c; }
+        .site-header { font-family: 'Inter', sans-serif; background: linear-gradient(90deg, #3b82f6, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body>
-
 <div id="app" class="flex flex-col items-center justify-center p-4">
-
     <div id="loading-spinner" class="absolute inset-0 bg-gray-100 bg-opacity-75 flex items-center justify-center z-50 hidden">
         <div class="flex flex-col items-center p-6 bg-white rounded-xl shadow-2xl">
             <svg class="animate-spin -ml-1 mr-3 h-10 w-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -28,7 +28,6 @@
     </div>
 
     <div id="main-content" class="w-full max-w-4xl bg-white rounded-xl shadow-2xl p-6 md:p-10 transition-all duration-300">
-
         <div id="start-screen" class="space-y-6">
             <h1 class="text-4xl font-extrabold text-center site-header mb-4">CDCFIB Practice Test</h1>
             <p class="text-md text-center text-gray-600 mb-6 font-semibold border-b pb-4">
@@ -46,12 +45,29 @@
                 <option value="CORRECTIONAL_NCS">NCS (Correctional Center) Focus</option>
                 <option value="GENERAL_ALL">General (Balanced Mix)</option>
             </select>
-            
-            <button id="start-button" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-xl transition duration-150 disabled:opacity-50 mt-6" disabled>
+
+            <label for="question-count-select" class="block text-sm font-medium text-gray-700 mt-4">Number of Questions:</label>
+            <select id="question-count-select" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm bg-white">
+                <option value="30">30 Questions</option>
+                <option value="50" selected>50 Questions</option>
+                <option value="80">80 Questions</option>
+                <option value="100">100 Questions</option>
+                <option value="120">120 Questions</option>
+                <option value="150">150 Questions</option>
+            </select>
+
+            <label for="time-limit-select" class="block text-sm font-medium text-gray-700 mt-4">Time Limit:</label>
+            <select id="time-limit-select" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm bg-white">
+                <option value="20">20 Minutes</option>
+                <option value="30" selected>30 Minutes</option>
+                <option value="40">40 Minutes</option>
+                <option value="60">60 Minutes</option>
+            </select>
+
+            <button id="start-button" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-xl transition duration-150 disabled:opacity-50 mt-6">
                 Proceed to Exam Lobby
             </button>
             <p id="user-info" class="text-xs text-center text-gray-400 mt-4">Secured User ID: <span id="auth-uid" class="font-mono">...</span></p>
-
             <div id="error-message" class="text-red-500 text-sm text-center mt-3 hidden"></div>
         </div>
 
@@ -60,8 +76,9 @@
             <p class="text-xl text-green-600">Candidate: <span id="candidate-name-lobby" class="font-semibold"></span></p>
             <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
                 <p class="text-lg font-medium text-gray-700">Focus Subject: <span id="department-lobby" class="font-semibold text-blue-700"></span></p>
-                <p class="text-lg font-medium text-gray-700">Total Questions: <span class="font-semibold text-blue-700">50</span> (From 4 subjects: Math, English, General, & Focus)</p>
-                <p class="text-lg font-medium text-gray-700">Time Allocated: <span class="font-semibold text-red-600">30 Minutes</span></p>
+                <p class="text-lg font-medium text-gray-700">Total Questions: <span id="total-questions-lobby" class="font-semibold text-blue-700">50</span></p>
+                <p class="text-lg font-medium text-gray-700">Time Allocated: <span id="time-limit-lobby" class="font-semibold text-red-600">30 Minutes</span></p>
+                <p class="text-sm text-gray-600 mt-2">Distribution: Maths (20%), English (20%), General (30%), Departmental (30%)</p>
             </div>
             <button id="begin-exam-button" class="py-3 px-8 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-lg transition duration-150 mt-4">
                 Start Exam Now!
@@ -94,7 +111,7 @@
             </div>
             
             <div id="navigation-grid" class="mt-6 p-4 bg-gray-100 rounded-lg border border-gray-200 grid grid-cols-10 gap-2">
-                </div>
+            </div>
         </div>
 
         <div id="results-screen" class="hidden text-center space-y-6">
@@ -103,41 +120,4 @@
             
             <div class="flex justify-center">
                 <div class="w-full max-w-sm bg-green-50 p-6 rounded-xl border-4 border-green-400 shadow-xl">
-                    <p class="text-xl font-semibold text-gray-700">Final Score</p>
-                    <p class="text-6xl font-black text-green-600" id="final-score">0/50</p>
-                    <p class="text-sm text-gray-500">Time Spent: <span id="time-spent"></span></p>
-                </div>
-            </div>
-
-            <h3 class="text-2xl font-bold text-blue-700 pt-4 border-t mt-6">Detailed Review & Explanation</h3>
-            <div id="review-list" class="space-y-8 text-left">
-                </div>
-
-            <button id="restart-button" class="py-3 px-8 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg transition duration-150 mt-6">
-                Take Another Exam
-            </button>
-        </div>
-
-        <div id="confirmation-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-            <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md space-y-5 text-center">
-                <h4 class="text-2xl font-bold text-red-600">Confirm Submission</h4>
-                <p id="modal-text" class="text-gray-700">Are you sure you want to end the exam? You will not be able to change your answers.</p>
-                <div class="flex justify-center space-x-4">
-                    <button id="modal-confirm" class="py-2 px-6 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition duration-150">
-                        Yes, Submit
-                    </button>
-                    <button id="modal-cancel" class="py-2 px-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-lg transition duration-150">
-                        Cancel
-                    </button>
-                </div>
-            </div> </div> </div> </div>
-
-<footer class="w-full text-center mt-6 text-sm text-gray-600">
-    <H3> Refined and Updated by Habeeb Oladapo Babatunde ---- Contact: <a href="mailto:@codewriter0206@gmail.com " class="text-green-600 hover:underline"> @codewriter0206@gmail.com </a> | Follow: <a href="https://x.com/HabeebOlad11620" target="_blank" rel="noreferrer" class="text-green-600 hover:underline">Follow me on X</a> </H3>
-    <p>This is a Refined copy of Prof. WiseMan Project---Contact: <a href="mailto:nicholasomozusi@gmail.com" class="text-green-600 hover:underline">nicholasomozusi@gmail.com</a> | Follow: <a href="https://x.com/@profwiseman1" target="_blank" rel="noreferrer" class="text-green-600 hover:underline">x.com/@profwiseman1</a></p>
-</footer>
-
-<script type="module" src="script.js"></script>
-
-</body>
-</html>
+                    <p class="text-xl font-semibold text-gray-700">Final 
