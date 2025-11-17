@@ -8,9 +8,9 @@ const FIXED_SUBJECTS = ['MATHS', 'ENGLISH', 'GENERAL'];
 
 // Percentage distribution (MATHS: 20%, ENGLISH: 20%, GENERAL: 30%, DEPARTMENTAL: 30%)
 const SUBJECT_PERCENTAGES = {
-    MATHS: 0.30,
-    ENGLISH: 0.30,
-    GENERAL: 0.10,
+    MATHS: 0.20,
+    ENGLISH: 0.20,
+    GENERAL: 0.30,
     DEPARTMENTAL: 0.30
 };
 
